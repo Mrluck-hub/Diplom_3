@@ -1,12 +1,13 @@
 from pages.base_page import BasePage
 from locators import AuthLocators, MainLocators
+from urls import Urls
 import allure
 
 class LoginPage(BasePage):
-    @allure.step("Авторизация пользователем {email}")
+    @allure.step("Авторизация под пользователем {email}")
     def login(self, email, password):
-        self.driver.get("https://stellarburgers.education-services.ru")
-        self.find_element_with_wait(AuthLocators.EMAIL_FIELD).send_keys(email)
-        self.find_element_with_wait(AuthLocators.PASS_FIELD).send_keys(password)
+        self.open_url(Urls.LOGIN_URL)
+        self.input_text(AuthLocators.EMAIL_FIELD, email)
+        self.input_text(AuthLocators.PASS_FIELD, password)
         self.click(AuthLocators.LOGIN_BTN)
-        self.find_element_with_wait(MainLocators.ORDER_BTN)
+        self.find_element(MainLocators.ORDER_BTN)
