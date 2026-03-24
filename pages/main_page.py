@@ -17,7 +17,7 @@ class MainPage(BasePage):
     def create_order_and_get_id(self):
         self.drag_and_drop(MainLocators.INGREDIENT, MainLocators.BASKET)
         self.click(MainLocators.ORDER_BTN)
-        order_id = self.get_text(MainLocators.ORDER_ID).replace("#", "").strip()
+        order_id = self.get_text(MainLocators.ORDER_ID)
         self.click(MainLocators.CLOSE_MODAL)
         self.wait_until_invisible(MainLocators.MODAL)
         return order_id

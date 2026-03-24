@@ -46,6 +46,11 @@ class BasePage:
         return WebDriverWait(self.driver, time).until(
             lambda d: int(d.find_element(*locator).text) > int(old_value)
         )
+    
+    def wait_for_text_to_be_digit(self, locator, time=25):
+        return WebDriverWait(self.driver, time).until(
+            lambda d: d.find_element(*locator).text.strip().isdigit()
+        )
             
     def drag_and_drop(self, source_locator, target_locator):
         element_from = self.driver.find_element(*source_locator)
